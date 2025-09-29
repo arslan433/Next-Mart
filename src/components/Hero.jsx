@@ -4,7 +4,7 @@ export default function Hero() {
       className="relative bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage:
-          "url('./image.png')",
+          "url('./bg.webp')",
       }}
     >
       <div className="bg-black/30 absolute inset-0" /> {/* overlay for readability */}

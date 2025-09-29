@@ -18,7 +18,7 @@ export default function Header() {
   const [shopOpen, setShopOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className=" top-0 z-50 bg-wite shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="ml-4">
