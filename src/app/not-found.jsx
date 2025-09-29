@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="text-center">
         {/* Floating Image */}
         <motion.img
-          src="./404.png"
+          src="./404.webp"
           alt="404 Illustration"
           className="mx-auto w-80 shadow-xl rounded-lg"
           animate={{ y: [0, -10, 0] }}
