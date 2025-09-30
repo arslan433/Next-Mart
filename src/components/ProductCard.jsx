@@ -19,8 +19,8 @@ export default function ProductCard({ title, price, originalPrice, discount, rat
 
                 {/* Price + Rating */}
                 <div className="mt-2 mb-5 flex items-center justify-between">
-                    <p>
-                        <span className="font-bold text-slate-900 text-[clamp(1rem,2vw,1.3rem)]">
+                    <p className="grid">
+                        <span className="font-bold text-slate-900 text-[clamp(1.1rem,4vw,1.3rem)]">
                             ${price}
                         </span>
 
@@ -35,7 +35,7 @@ export default function ProductCard({ title, price, originalPrice, discount, rat
                             <svg
                                 key={i}
                                 aria-hidden="true"
-                                className={`h-5 w-5 ${i < Math.round(rating) ? 'text-yellow-300' : 'text-gray-300'}`}
+                                className={`h-5 w-5 ${i < Math.round(rating) ? 'text-yellow-400' : 'text-gray-200'}`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
@@ -49,7 +49,7 @@ export default function ProductCard({ title, price, originalPrice, discount, rat
                   1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         ))}
-                        <span className="ml-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
+                        <span className="ml-2 rounded bg-yellow-200 px-2.5 py-0.5 pt-[3px] text-xs font-semibold">
                             {rating}
                         </span>
                     </div>
