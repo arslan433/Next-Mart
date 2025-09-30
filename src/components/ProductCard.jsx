@@ -5,7 +5,7 @@ export default function ProductCard({ title, price, originalPrice, discount, rat
             <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                 <img className="object-cover w-full" src={image} alt={title} />
                 {discount && (
-                    <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-sm font-medium text-white">
+                    <span className="absolute top-0 left-0 m-2 pt-[1px] rounded-full bg-black px-2 text-sm font-medium text-white">
                         {discount}% OFF
                     </span>
                 )}
@@ -49,7 +49,7 @@ export default function ProductCard({ title, price, originalPrice, discount, rat
                   1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         ))}
-                        <span className="ml-2 rounded bg-yellow-200 px-2.5 py-0.5 pt-[3px] text-xs font-semibold">
+                        <span className="ml-2 rounded bg-yellow-200 px-2 py-0.5 pt-[3px] text-xs tracking-tight font-semibold">
                             {rating}
                         </span>
                     </div>
