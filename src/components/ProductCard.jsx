@@ -1,15 +1,17 @@
-export default function ProductCard({ title, price, originalPrice, discount, rating, image }) {
+import Link from "next/link";
+
+export default function ProductCard({ id,title, price, originalPrice, discount, rating, image }) {
     return (
         <div className="relative m-4 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             {/* Product Image */}
-            <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+            <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href={`/product/${id}`}>
                 <img className="object-cover w-full" src={image} alt={title} />
                 {discount && (
                     <span className="absolute top-0 left-0 m-2 pt-[1px] rounded-full bg-black px-2 text-sm font-medium text-white">
                         {discount}% OFF
                     </span>
                 )}
-            </a>
+            </Link>
 
             {/* Product Info */}
             <div className="mt-4 px-5 pb-5">

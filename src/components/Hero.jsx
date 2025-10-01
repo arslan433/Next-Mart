@@ -71,6 +71,7 @@ export default function Hero() {
           {products.map((item) => (
             <ProductCard
               key={item.id}
+              id={item.id}
               title={item.title}
               price={item.price}
               originalPrice={Math.round(item.price / (1 - item.discountPercentage / 100))}
