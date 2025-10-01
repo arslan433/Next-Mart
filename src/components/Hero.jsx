@@ -1,20 +1,19 @@
 "use client";
 import { useEffect, useState } from 'react';
 import ProductCard from '@/src/components/ProductCard';
+import ShopByCategory from '@/src/components/ShopByCategory';
 import { motion } from "framer-motion";
-
+import { fetchProducts } from '@/src/utils/fetchProducts';
 import Link from "next/link";
 
 
 
 export default function Hero() {
 
-  const [products, setProducts] = useState([]);
+ const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then(res => res.json())
-      .then(data => setProducts(data.products));
+    fetchProducts().then(setProducts);
   }, []);
   return (
     <>
@@ -81,6 +80,9 @@ export default function Hero() {
             />
           ))}
         </div>
+      </section>
+      <section>
+        <ShopByCategory/>
       </section>
     </>
   );
