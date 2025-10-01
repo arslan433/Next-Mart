@@ -1,4 +1,3 @@
-// src/app/category/[slug]/page.jsx
 import ProductCard from "@/src/components/ProductCard";
 
 export default async function CategoryPage({ params }) {
@@ -18,8 +17,7 @@ export default async function CategoryPage({ params }) {
             {products.length === 0 ? (
                 <p>No products found in this category.</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {/* <div className="grid grid-cols-1 sm:grid-cols- lg:grid-cols-4 gap-4 justify-items-center mx-2"> */}
+                <div className="grid grid-cols-1 sm:grid-cols- lg:grid-cols-4 gap-4 justify-items-center mx-2">
                     {products.map((item) => (
                         <ProductCard
                             key={item.id}
@@ -32,7 +30,6 @@ export default async function CategoryPage({ params }) {
                             image={item.thumbnail}
                         />
                     ))}
-                    {/* </div> */}
                 </div>
             )}
         </section>

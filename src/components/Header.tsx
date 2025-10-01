@@ -7,7 +7,7 @@ import { ShoppingCart } from 'lucide-react';
 export default function Header() {
 
   return (
-    <header className=" top-0 z-50 bg-wite shadow-sm mx-4 py-2">
+    <header className=" top-0 z-50 bg-wite shadow-sm px-4 py-2">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="m">
