@@ -24,7 +24,9 @@ export default function Header() {
           <Link href={"/contact"}>Contact</Link>
         </div>
         <div className="flex gap-5">
+          <Link href={'/cart'}>
           <ShoppingCart />
+          </Link>
         </div>
       </div>
     </header>

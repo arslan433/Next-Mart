@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import ImageMagnifier from "@/src/components/ImageMagnifier";
+import { useCartStore } from "@/src/store/cartStore";
 
 export default function ProductDetail({ product }) {
   const [activeImage, setActiveImage] = useState(product.images[0]);
+  const addToCart = useCartStore((state) => state.addToCart);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-12">
@@ -58,55 +60,36 @@ export default function ProductDetail({ product }) {
           {/* Add to Cart */}
           <div className="flex gap-4">
 
-          <a
-            href="#"
-            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
-            >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
+            <button onClick={() => addToCart(product)}
+               className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
               >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 
+              Add to Cart
+            </button>
+            <a
+              href="#"
+              className="flex items-center justify-center rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="mr-2 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 
                 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 
                 1.707.707 1.707H17m0 0a2 2 0 
                 100 4 2 2 0 000-4zm-8 2a2 2 0 
                 11-4 0 2 2 0 014 0z"
                 />
-            </svg>
-            Add to cart
-          </a>
-          <a
-            href="#"
-            className="flex items-center justify-center rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
-            >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-              >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 
-                13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 
-                1.707.707 1.707H17m0 0a2 2 0 
-                100 4 2 2 0 000-4zm-8 2a2 2 0 
-                11-4 0 2 2 0 014 0z"
-                />
-            </svg>
-           Buy Now
-          </a>
-      </div>
+              </svg>
+              Buy Now
+            </a>
+          </div>
         </div>
       </div>
 
@@ -117,17 +100,17 @@ export default function ProductDetail({ product }) {
           <div className="flex grid-cols-2 sm:grid-cols-4 gap-4">
             {product.images.map((img, index) => (
               <button
-              key={index}
-              onClick={() => setActiveImage(img)}
-              className={`rounded-lg overflow-hidden border-2 transition w-32 
+                key={index}
+                onClick={() => setActiveImage(img)}
+                className={`rounded-lg overflow-hidden border-2 transition w-32 
                 ${activeImage === img ? "border-gray-500/50" : "border-transparent"}`}
-                >
+              >
                 <img
                   src={img}
                   alt={`${product.title} ${index}`}
                   className="w object-cover hover:scale-105 transition-transform duration-300"
-                  
-                  />
+
+                />
               </button>
             ))}
           </div>

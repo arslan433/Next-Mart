@@ -44,8 +44,8 @@ export default function Hero() {
                 transition={{ delay: 1, duration: 0.3 }}
               >
                 <Link
-                  href="/products"
-                  className="mt-6 inline-block bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition hover:scale-105 hover:bg-blue-700"
+                  href="/product"
+                  className="mt-6 inline-block bg-slate-900 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition hover:scale-105 hover:bg-slate-700"
                 >
                   Shop Now
                 </Link>
@@ -65,23 +65,30 @@ export default function Hero() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-12 bg-gray-50">
-        <h2 className="text-2xl font-bold text-center mb-6">Featured Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols- lg:grid-cols-4 gap-4 justify-items-center mx-2">
-          {products.map((item) => (
-            <ProductCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              originalPrice={Math.round(item.price / (1 - item.discountPercentage / 100))}
-              discount={item.discountPercentage}
-              rating={item.rating}
-              image={item.thumbnail}
-            />
-          ))}
-        </div>
-      </section>
+      <section className="max-w-6xl mx-auto px-4 py-12">
+            <h1 className="text-3xl font-bold mb-8 capitalize text-center">
+               Featured Products
+            </h1>
+
+            {products.length === 0 ? (
+                <p>No products found in this category.</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center mx-2">
+                    {products.map((item) => (
+                        <ProductCard
+                            key={item.id}
+                            id={item.id}
+                            title={item.title}
+                            price={item.price}
+                            originalPrice={Math.round(item.price / (1 - item.discountPercentage / 100))}
+                            discount={item.discountPercentage}
+                            rating={item.rating}
+                            image={item.thumbnail}
+                        />
+                    ))}
+                </div>
+            )}
+        </section>
       <section>
         <ShopByCategory/>
       </section>
