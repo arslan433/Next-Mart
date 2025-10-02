@@ -2,11 +2,15 @@
 import { useState } from "react";
 import ImageMagnifier from "@/src/components/ImageMagnifier";
 import { useCartStore } from "@/src/store/cartStore";
+import { Star } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetail({ product }) {
   const [activeImage, setActiveImage] = useState(product.images[0]);
   const addToCart = useCartStore((state) => state.addToCart);
 
+  const { setBuyNow } = useCartStore();
+  const router = useRouter();
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-12">
@@ -62,34 +66,19 @@ export default function ProductDetail({ product }) {
           <div className="flex gap-4">
 
             <button onClick={() => addToCart(product)}
-               className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
-              >
+              className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
+            >
               Add to Cart
             </button>
-            <a
-              href="#"
-              className="flex items-center justify-center rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
+            <button
+              onClick={() => {
+                addToCart(product); // sirf ek product set hoga
+                router.push("/checkout");
+              }}
+              className="bg-green-600 text-white px-5 py-2.5 rounded-md hover:bg-green-700"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="mr-2 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 
-                13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 
-                1.707.707 1.707H17m0 0a2 2 0 
-                100 4 2 2 0 000-4zm-8 2a2 2 0 
-                11-4 0 2 2 0 014 0z"
-                />
-              </svg>
               Buy Now
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -121,23 +110,50 @@ export default function ProductDetail({ product }) {
       {/* Reviews */}
       {product.reviews?.length > 0 && (
         <div className="mt-12">
-          <h2 className="text-xl font-semibold mb-4">Customer Reviews</h2>
-          <div className="space-y-4">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900">Customer Reviews</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {product.reviews.map((review, index) => (
-              <div key={index} className="border p-4 rounded-lg shadow-sm">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold">{review.reviewerName}</span>
-                  <span className="text-yellow-500">⭐ {review.rating}</span>
+              <div
+                key={index}
+                className="bg-gradient-to-br from-slate-100 to-slate-300 rounded-2xl shadow-lg p-6 text- transform hover:scale-[1.02] transition duration-300"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    {/* Avatar with initials */}
+                    <div className="w-12 h-12 rounded-full bg-slate-500 flex items-center justify-center font-bold text-white shadow-md">
+                      {review.reviewerName?.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-semibold">{review.reviewerName}</p>
+                      <span className="text-xs text-slate-500">
+                        {new Date(review.date).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Rating Stars */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        size={20}
+                        className={i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-slate-400"}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-gray-700">{review.comment}</p>
-                <span className="text-xs text-gray-400">
-                  {new Date(review.date).toLocaleDateString()}
-                </span>
+
+                {/* Comment */}
+                <blockquote className="italic leading-relaxed">
+                  "{review.comment}"
+                </blockquote>
               </div>
             ))}
           </div>
         </div>
       )}
+
 
       {/* QR Code */}
       {product.meta?.qrCode && (

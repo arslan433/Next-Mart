@@ -17,7 +17,7 @@ export default function NotFound() {
 
         {/* Heading */}
         <motion.h1
-          className="text-7xl font-extrabold text-blue-700 mt-6"
+          className="text-7xl font-extrabold text-slate-700 mt-6"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -43,7 +43,7 @@ export default function NotFound() {
         >
           <Link
             href="/"
-            className="mt-6 inline-block bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition hover:scale-105 hover:bg-blue-700"
+            className="mt-6 inline-block bg-slate-900 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition hover:scale-105 hover:bg-slate-800"
           >
             Return Home
           </Link>

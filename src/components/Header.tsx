@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="sticky bg-white/30 backdrop-blur-md top-0 z-50 shadow-sm px-4 py-2">
-      <div className="container mx-auto flex items-center justify-between fi">
+      <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="m">
           <Image
@@ -21,17 +21,24 @@ export default function Header() {
             height={10}
           />
         </Link>
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-md:hidden">
           <Link href={"/"}>Home</Link>
           <Link href={"/about"}>About</Link>
           <Link href={"/contact"}>Contact</Link>
         </div>
+
         <div className="flex gap-5">
-          <Link href={'/cart'}>
-            <div className="absolute right-[12px] top-[15px] bg-slate-900 text-white rounded-full h-4 w-4 text-center flex justify-center">
-              <span className="text-xs">
-              {totalItems}</span></div>
-            <ShoppingCart />
+          <Link href="/cart" className="relative inline-block">
+            <ShoppingCart className="w-7 h-7 text-slate-900" />
+
+            {totalItems > 0 && (
+              <span
+                className="absolute -top-1 -right-2 bg-slate-900 text-white text-[10px] font-semibold 
+                   rounded-full h-5 w-5 flex items-center justify-center"
+              >
+                {totalItems}
+              </span>
+            )}
           </Link>
         </div>
       </div>

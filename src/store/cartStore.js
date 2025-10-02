@@ -42,7 +42,7 @@ export const useCartStore = create(
       clearCart: () => set({ cart: [] }),
     }),
     {
-      name: "nextmart-cart", 
+      name: "nextmart-cart",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ cart: state.cart }),
       version: 1,
