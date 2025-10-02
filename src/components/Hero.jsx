@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import ProductCard from '@/src/components/ProductCard';
+import ExclusiveOffer from '@/src/components/ExclusiveOffer';
 import ShopByCategory from '@/src/components/ShopByCategory';
 import { motion } from "framer-motion";
 import { fetchProducts } from '@/src/utils/fetchProducts';
@@ -10,7 +11,7 @@ import Link from "next/link";
 
 export default function Hero() {
 
- const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetchProducts().then(setProducts);
@@ -66,31 +67,34 @@ export default function Hero() {
 
       {/* Featured Products */}
       <section className="max-w-6xl mx-auto px-4 py-12">
-            <h1 className="text-3xl font-bold mb-8 capitalize text-center">
-               Featured Products
-            </h1>
+        <h1 className="text-3xl font-bold mb-8 capitalize text-center">
+          Featured Products
+        </h1>
 
-            {products.length === 0 ? (
-                <p>No products found in this category.</p>
-            ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center mx-2">
-                    {products.map((item) => (
-                        <ProductCard
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            originalPrice={Math.round(item.price / (1 - item.discountPercentage / 100))}
-                            discount={item.discountPercentage}
-                            rating={item.rating}
-                            image={item.thumbnail}
-                        />
-                    ))}
-                </div>
-            )}
-        </section>
+        {products.length === 0 ? (
+          <p>No products found in this category.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center mx-2">
+            {products.map((item) => (
+              <ProductCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                price={item.price}
+                originalPrice={Math.round(item.price / (1 - item.discountPercentage / 100))}
+                discount={item.discountPercentage}
+                rating={item.rating}
+                image={item.thumbnail}
+              />
+            ))}
+          </div>
+        )}
+      </section>
       <section>
-        <ShopByCategory/>
+        <ShopByCategory />
+      </section>
+      <section>
+        <ExclusiveOffer />
       </section>
     </>
   );
