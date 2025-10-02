@@ -41,7 +41,7 @@ export default function Hero() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.3 }}
+                transition={{ delay: 0.3, duration: 1 }}
               >
                 <Link
                   href="/product"
