@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart } from 'lucide-react';
 import { useCartStore } from "@/src/store/cartStore";
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const { cart } = useCartStore();
@@ -23,10 +24,11 @@ export default function Header() {
         </Link>
         <div className="flex gap-5 max-md:hidden">
           <Link href={"/"}>Home</Link>
-          <Link href={"/about"}>About</Link>
-          <Link href={"/contact"}>Contact</Link>
-        </div>
+          <Link href={"#"}>About</Link>
+          <Link href={"#"}>Contact</Link>
+          <div className="pl-20"><SearchBar/> </div>
 
+        </div>
         <div className="flex gap-5">
           <Link href="/cart" className="relative inline-block">
             <ShoppingCart className="w-7 h-7 text-slate-900" />
